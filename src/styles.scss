@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label.label {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #353535;
+}
+
+.form-group input.form-control {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 5px 0.25rem #0d6efd14;
+}
+
+.form-group:focus-within label.label {
+    color: #0a58ca;
+}
+
+.modal-header {
+    background: #0e6a96;
+    color: #fff;
+}
+.modal-footer .btn{
+    text-decoration: none;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #0e6a96;
+    border-color: #0e6a96;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0d4f6d;
+    border-color: #0d4f6d;
+}
+
+.text-primary {
+    color: #0d4f6d !important;
+}
+.text-Inactive{
+    color: red;
+}
+
+.text-active{
+    color: green;
+}

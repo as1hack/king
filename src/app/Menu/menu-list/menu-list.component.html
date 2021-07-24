@@ -1,0 +1,174 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add menu
+</button>
+
+<div *ngIf="createGet" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Shift</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="label">Menu Name</label>
+                            <input class="form-control" type="text" name="name" [(ngModel)]="menuName" placeholder="Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="label">Menu Link</label>
+                            <input class="form-control" type="text" name="link" [(ngModel)]="link" placeholder="Name" />
+                        </div>
+                    </div>
+                      <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                              <label class="label">Role</label>                              
+                              <select (change)="getMenuBaseOnRoleId(Role)" [(ngModel)]="Role" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option *ngFor="let item of createGet.roles"  value="{{item.id}}">{{item.name}}</option>
+                                
+                              </select>
+                              
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="label">Main Menu</label>
+                            <select  [(ngModel)]="mainMenu"  class="form-control">
+                              <option value="">-- Select --</option>
+                              <option>One</option>
+                              <option>Two</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="label">Sub Menu</label>
+                            <select  [(ngModel)]="subMenu" class="form-control">
+                                <option value="">-- Select --</option>
+                                <option>One</option>
+                                <option>Two</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <div class="form-group">
+                          <label class="label">Menu Level</label>
+                          <select  [(ngModel)]="level" class="form-control">
+                            <option value="">-- Select --</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                          </select>
+                      </div>
+                  </div>           
+                    
+                     
+                      <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="label">Menu Position</label>
+                            <input type="number" name="position" [(ngModel)]="position" class="form-control">                            
+                        </div>
+                    </div> 
+                     
+                  
+
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="menuCreate()">Save changes</button>
+              <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+ 
+<ngx-datatable
+[rows]="allMenu"
+ class="material server-scrolling-demo"
+[columnMode]="columnMode.force" [headerHeight]="100" [externalPaging]="true" [count]="22"
+[offset]="0"
+[limit]="10"  [footerHeight]="70" [rowHeight]="'auto'" >
+
+<ngx-datatable-column   name="#" prop="name"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Name </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text">
+            <!-- {{row.name }} --> 
+            {{(row.name)}}
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Parent Menu </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+      <span class="badge badge-success" *ngIf="row.recordState=='Active' ">
+        
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
+          
+        </span>
+        <span class="badge badge-danger" *ngIf="row.recordState =='Inactive' ">
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Level </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="bi bi-trash"  >
+           Delete
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+  <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+      <span class="local-sort" title="Status"> Link </span>        
+  </ng-template>
+  <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+      <span class="bi bi-trash"  >
+         Delete
+        
+      </span>
+  </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+  <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+      <span class="local-sort" title="Status"> Status </span>        
+  </ng-template>
+  <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+      <span class="bi bi-trash"  >
+         Delete
+        
+      </span>
+  </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+  <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+      <span class="local-sort" title="Status"> Action </span>        
+  </ng-template>
+  <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+      <span class="bi bi-trash" (click)="deleteMenu(row)" >
+         Delete
+        
+      </span>
+  </ng-template>
+</ngx-datatable-column>
+</ngx-datatable>

@@ -1,0 +1,102 @@
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+   Add Role
+</button>
+<div class="row">
+    <div class='col-sm-12'>
+        <!-- <app-inline-error-msg ></app-inline-error-msg> -->
+        <!-- <div class="alert alert-danger" style="padding: 5px;margin-bottom:10px" >
+            <div>
+              <div style="position: absolute; font-size: 17px;">
+                <span [class]="iconClass" [title]="error_type"></span>
+              </div>
+              <div style="margin: 0px 0px 0px 30px;">
+                <span *ngFor="let msg of error_msg" style="font-weight: bolder;">
+                    {{msg}}<br />
+                </span>
+              </div>
+            </div>
+          </div> -->
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Shift</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Role</label>
+                                
+                                <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
+                            </div>
+                        </div>
+                      
+                      
+                       
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="createRole()" >Create Role</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-datatable *ngIf="allRole"
+[rows]="allRole.items"
+ class="material server-scrolling-demo"
+[columnMode]="columnMode.force" [headerHeight]="100" [externalPaging]="true" [count]="page.totalCount"
+[offset]="page.pageIndex"
+(page)='setPage($event)'
+[limit]="page.pageSize"  [footerHeight]="70" [rowHeight]="'auto'" >
+
+<ngx-datatable-column   name="#" prop="name"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Name </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text">
+            <!-- {{row.name }} --> 
+            {{(row.name)}}
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Record State </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text-active" *ngIf="row.recordState=='Active' ">
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
+          
+        </span>
+        <span class="text-Inactive" *ngIf="row.recordState =='Inactive' ">
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> Action </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="bi bi-trash" (click)="deleteRole(row)" >
+           Delete
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+</ngx-datatable>
