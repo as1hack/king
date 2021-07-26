@@ -71,12 +71,12 @@ export class MenuService {
   
     })
   }
-  deleteMenu(data:any){
+  deleteMenu(json:any){
     return new Promise((resolve,reject) => {
-      // const headers = new HttpHeaders()
-      //              .set('Content-Type', 'application/json');
-      // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/UpdateRecordState',data).subscribe(data => {
+      const headers = new HttpHeaders()
+                   .set('Content-Type', 'application/json');
+      
+      this.http.post(this.baseUrl + 'Menu/UpdateRecordState',json,{headers:headers}).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -87,6 +87,19 @@ export class MenuService {
   
     })
   }
+  updateMenu(data:any): Observable<any[]>{
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + 'token')
+  //   const headers = new Headers();
+  // headers.append('Content-Type', 'application/json');
+  // const options = new RequestOptions({ headers: headers });
+    // return this.http.post(this.baseUrl + 'Role/UpdateRecordState', data ,{headers:headers}).toPromise()
+  
+    return this.http.post<any[]>(this.baseUrl + 'Menu/Update', data  ,{headers:headers})
+   
+     
+  }
+
 
   create(menuInfo:any){
   

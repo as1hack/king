@@ -1,1 +1,70 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg lelecon-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            King 007
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Partner with Us</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <i class="fa fa-bag"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-outline" href="#">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-theme" href="#">Sign up</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<ul class="navigation-dropdown-listing">
+    <div class="container">
+        <li *ngFor="let level1 of menuData;" class="navigation-item">
+            <a class="navigation-link">{{level1.name}}</a>
+            <ul *ngIf="level1.childMenus.length>0" class="navigation-group">
+                <li *ngFor="let level2 of level1.childMenus;" class="navigation-item">
+                    <a class="navigation-link"(click)="goToModule(level2)" >{{level2.name}}</a>
+                </li>
+                <!-- <li class="navigation-item">
+                    <a class="navigation-link">Option</a>
+                </li>
+                <li class="navigation-item">
+                    <a class="navigation-link">Option</a>
+                </li> -->
+            </ul>
+        </li>
+     
+     
+      
+    </div>
+</ul>
+<router-outlet>
+</router-outlet>
+
+<footer class="footer" style="bottom:0px;position:fixed;color: #fff;background: #3b8fb5;border-color: #3b8fb5;">
+    <div id="Copyright" style="text-align:center;">
+        <!-- &copy; American Preclinical Services - APSFlightLog.com {{year}} -->
+        &copy; Copyright {{year}}, Example Corporation
+    </div>
+</footer>

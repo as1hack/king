@@ -10,6 +10,7 @@ import {Observable,throwError } from 'rxjs'
 import { map } from 'rxjs/operators';
 
 
+
 /* map and Promise */
 
 
@@ -22,23 +23,43 @@ export class RoleService {
   constructor(private http: HttpClient, public utils:UtilsService) { }
 
   role(roleInfo:any){   
-    
-    const headers = new HttpHeaders()
-              .set('Content-Type', 'application/json');
-              return this.http.post(this.baseUrl + 'Role/Create', roleInfo ,{headers});
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + 'token')
+    // const headers = new HttpHeaders()
+    //           .set('Content-Type', 'application/json');
+              return this.http.post(this.baseUrl + 'Role/Create', roleInfo ,{headers:headers}).toPromise();
 }
 
 getRole(event:any){
   const headers = new HttpHeaders()
               .set('Content-Type', 'application/json');
    
-  return this.http.get(this.baseUrl + 'Role/GetAll?pageIndex=' +event.pageIndex+ '&pageSize='+ event.pageSize,{headers:headers});
+  return this.http.get(this.baseUrl + 'Role/GetAll?pageIndex=' +event.pageIndex+ '&pageSize='+ event.pageSize);
   
 }
-deleteRole(data:any){
-  const headers = new HttpHeaders()
-              .set('Content-Type', 'application/json');
-  return this.http.post(this.baseUrl + 'Role/UpdateRecordState', data ,{headers:headers});
+deleteRole(data:any): Observable<any[]>{
+  let headers = new HttpHeaders();
+  headers = headers.set('Authorization', 'Bearer ' + 'token')
+//   const headers = new Headers();
+// headers.append('Content-Type', 'application/json');
+// const options = new RequestOptions({ headers: headers });
+  // return this.http.post(this.baseUrl + 'Role/UpdateRecordState', data ,{headers:headers}).toPromise()
+
+  return this.http.post<any[]>(this.baseUrl + 'Role/UpdateRecordState', data  ,{headers:headers})
+ 
+   
+}
+
+updateRole(data:any): Observable<any[]>{
+  let headers = new HttpHeaders();
+  headers = headers.set('Authorization', 'Bearer ' + 'token')
+//   const headers = new Headers();
+// headers.append('Content-Type', 'application/json');
+// const options = new RequestOptions({ headers: headers });
+  // return this.http.post(this.baseUrl + 'Role/UpdateRecordState', data ,{headers:headers}).toPromise()
+
+  return this.http.post<any[]>(this.baseUrl + 'Role/Update', data  ,{headers:headers})
+ 
    
 }
 }

@@ -1,67 +1,41 @@
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-   Add Role
+<div class="modal-header-btn" style="margin-inline-end: auto;">
+    <div class="container_name navbar-brand">Role</div>
+    <div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="onCreate()" data-bs-target="#exampleModal">
+   Add New<i class="fa fa-plus-circle pr-12" ></i>
 </button>
-<div class="row">
-    <div class='col-sm-12'>
-        <!-- <app-inline-error-msg ></app-inline-error-msg> -->
-        <!-- <div class="alert alert-danger" style="padding: 5px;margin-bottom:10px" >
-            <div>
-              <div style="position: absolute; font-size: 17px;">
-                <span [class]="iconClass" [title]="error_type"></span>
-              </div>
-              <div style="margin: 0px 0px 0px 30px;">
-                <span *ngFor="let msg of error_msg" style="font-weight: bolder;">
-                    {{msg}}<br />
-                </span>
-              </div>
-            </div>
-          </div> -->
-    </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Shift</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="form-group">
-                                <label class="label">Role</label>
-                                
-                                <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
-                            </div>
-                        </div>
-                      
-                      
-                       
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="createRole()" >Create Role</button>
-                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
 
+
+<div class="content-card">
 <ngx-datatable *ngIf="allRole"
 [rows]="allRole.items"
  class="material server-scrolling-demo"
-[columnMode]="columnMode.force" [headerHeight]="100" [externalPaging]="true" [count]="page.totalCount"
+[columnMode]="columnMode.force" [headerHeight]="50" [externalPaging]="true" [count]="page.totalCount"
 [offset]="page.pageIndex"
 (page)='setPage($event)'
 [limit]="page.pageSize"  [footerHeight]="70" [rowHeight]="'auto'" >
-
 <ngx-datatable-column   name="#" prop="name"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
     <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
-        <span class="local-sort" title="Status"> Name </span>        
+        <span class="local-sort" title="Status"> S. No </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text">
+            <!-- {{row.name }} --> 
+            {{rowIndex+1}}
+          
+        </span>
+        <span *ngIf="editmode && editview" class="form-group">
+                               
+                                
+            <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Name"> Name </span>        
     </ng-template>
     <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
         <span class="text">
@@ -69,34 +43,72 @@
             {{(row.name)}}
           
         </span>
-    </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
-    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
-        <span class="local-sort" title="Status"> Record State </span>        
-    </ng-template>
-    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
-        <span class="text-active" *ngIf="row.recordState=='Active' ">
-            <!-- {{row.name }} --> 
-            {{(row.recordState)}}
-          
-        </span>
-        <span class="text-Inactive" *ngIf="row.recordState =='Inactive' ">
-            <!-- {{row.name }} --> 
-            {{(row.recordState)}}
-          
+        <span *ngIf="editmode && editview" class="form-group">
+                               
+                                
+            <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
         </span>
     </ng-template>
 </ngx-datatable-column>
 <ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
     <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
-        <span class="local-sort" title="Status"> Action </span>        
+        <span class="local-sort" title="Record State"> Record State </span>        
     </ng-template>
     <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
-        <span class="bi bi-trash" (click)="deleteRole(row)" >
-           Delete
+        <span class="badge bg-success" *ngIf="row.recordState=='Active' ">
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
           
+        </span>
+        <span  class="badge bg-danger" *ngIf="row.recordState =='Inactive' ">
+            <!-- {{row.name }} --> 
+            {{(row.recordState)}}
+          
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Action"> Action </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="fa fa trash"  >
+          
+        <span style="cursor: pointer;padding-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(row)">Edit</span> <span style="cursor: pointer;" (click)="deleteRole(row)">Delete</span> 
         </span>
     </ng-template>
 </ngx-datatable-column>
 </ngx-datatable>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6"> <label class="label">Role</label></div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                               
+                                
+                                <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
+                            </div>
+                        </div>                   
+                      
+                       
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" *ngIf="!isEditMode" class="btn btn-primary" (click)="createRole()" >Create Role</button>
+                <button type="button" *ngIf="isEditMode" class="btn btn-primary" (click)="updateRecord()" >Update Role</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // Service 
 import { ColumnMode } from "@swimlane/ngx-datatable";
 import { RoleService } from 'src/app/services/Role/role.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 /* model */
 import { Page } from '../../Common/page';
@@ -23,7 +23,11 @@ export class RoleListComponent implements OnInit {
   public page = new Page();
   public errorMsg: string[] = [];
   RoleList: any;
-  constructor(public service:RoleService) { }
+  public editview = false;
+  public editmode: any;
+  public recordId :string;
+  isEditMode: boolean;
+  constructor(public service:RoleService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.allRole = [
@@ -46,14 +50,53 @@ export class RoleListComponent implements OnInit {
       recordState:'Active'
     }
     debugger
-this.service.role(json).subscribe(
-  response => {    
-    alert('dfd')
-    this.setPage({ offset: 0, pageSize: 10})
-
-  })
+this.service.role(json).then((response : any) => {
+  alert('succes')
+ }, error => {
+   alert('error')
+  }
+)
   
  
+  }
+
+  onEdit(row){
+    this.Role=row.name;
+    this.recordId=row.id
+    this.isEditMode=true;
+  }
+  onCreate(){
+    this.Role=null
+    this.isEditMode=false;
+  }
+  updateRecord(){
+    let json={
+      id:this.recordId,
+      name:this.Role,
+      recordState:'Active',
+
+    }
+    this.service.updateRole(json) .subscribe(
+      (response) => {                           //Next callback
+        this.setPage({ offset: 0, pageSize: 10})
+       this.toastr.success('Success', 'response');
+       alert('success')
+      },
+      (error) => {              
+        this.setPage({ offset: 0, pageSize: 10})  
+        alert('error')              //Error callback
+        // this.toastr.error('Error', 'Toastr fun!'); 
+        //throw error;   //You can also throw the error to a global error handler
+      }
+    )
+    // .then((response : any) => {
+    //   this.setPage({ offset: 0, pageSize: 10})
+    //   this.toastr.success('Success', response);
+    //  }, error => {
+    //   this.toastr.error('Error', 'Toastr fun!'); 
+    //   }
+    // )
+
   }
 
   setPage(event:any){
@@ -63,7 +106,7 @@ this.service.role(json).subscribe(
     this.service.getRole(this.page)
     .subscribe(
       response => {
-        
+        this.toastr.success('Success1', 'response1');
         this.allRole=response as Page  
         this.page.totalCount = this.allRole.totalCount
     this.page.totalPages = this.page.totalCount / this.page.pageSize;  
@@ -71,6 +114,7 @@ this.service.role(json).subscribe(
     
       },
       error => {
+        this.toastr.error('Error', 'response');
         this.error_type='Error'
         this.errorMsg.push('You have error from server')
         console.error(error);       
@@ -84,17 +128,27 @@ this.service.role(json).subscribe(
       id:event.id,
       recordState:'Deleted'
     }
-    this.service.deleteRole(json).subscribe(
-      response => {    
-        this.allRole=response  
-    
+    this.service.deleteRole(json) .subscribe(
+      (response) => {                           //Next callback
+        this.setPage({ offset: 0, pageSize: 10})
+       this.toastr.success('Success', 'response');
       },
-      error => {
-        this.error_type='Error'
-        this.errorMsg.push('You have error from server')
-        console.error(error);       
-        
-      });
+      (error) => {              
+        this.setPage({ offset: 0, pageSize: 10})                //Error callback
+        // this.toastr.error('Error', 'Toastr fun!'); 
+        //throw error;   //You can also throw the error to a global error handler
+      }
+    )
+    // .then((response : any) => {
+    //   this.setPage({ offset: 0, pageSize: 10})
+    //   this.toastr.success('Success', response);
+    //  }, error => {
+    //   this.toastr.error('Error', 'Toastr fun!'); 
+    //   }
+    // )
+
+
+   
    
   }
 

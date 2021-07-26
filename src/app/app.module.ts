@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UtilsService } from './services/utils.service';
 import { LoginComponent } from './Login/login/login.component';
-
+import { ToastrModule } from 'ngx-toastr';
 //  importing http module
 import { HttpClientModule } from '@angular/common/http';
 import { MenuListComponent } from './Menu/menu-list/menu-list.component';
@@ -33,6 +33,7 @@ import { InlineErrorMsgComponent } from './Common/inline-error-msg/inline-error-
     AppRoutingModule,
     HttpClientModule,
     NgxDatatableModule,
+    ToastrModule.forRoot(),
     
   ],
   providers: [UtilsService,RoleService],

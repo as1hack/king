@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // Service 
 import { LoginService } from '../../services/login.service';
 import { ColumnMode } from "@swimlane/ngx-datatable";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,6 +37,7 @@ public columnInfoArray = [{
   label: "Address",
   prop: "address"
 }]
+public menuData:any
   constructor(public LoginService: LoginService) { }
 
   ngOnInit(): void {
@@ -55,5 +57,6 @@ public columnInfoArray = [{
   loginWithUserNameAndPassword(){
 
   }
+ 
 
 }
