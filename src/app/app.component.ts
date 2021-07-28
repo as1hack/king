@@ -13,10 +13,10 @@ export class AppComponent {
   ngOnInit(): void {
     let d = new Date();
     this.year = d.getFullYear();
-    this.getMenu()
+    
   }
-  getMenu(){
-    this.LoginService.menu().then((data) => {
+  getMenu(id){
+    this.LoginService.menu(id).then((data) => {
      this.menuData=data
 
     }).catch(error => {

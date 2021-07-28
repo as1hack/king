@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 // Service 
-import { LoginService } from '../../services/login.service';
+import { LoginService,  } from '../../services/login.service';
 import { ColumnMode } from "@swimlane/ngx-datatable";
+import { Router,ActivatedRoute } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';  
+import { CookieService } from 'ngx-cookie-service';  
 
 @Component({
   selector: 'app-login',
@@ -20,6 +23,14 @@ export class LoginComponent implements OnInit {
   gender: "Male",
   address: "1, Main street, Chennai - 600123"
 }]
+loginData = {
+  username:'',
+  password:'',
+  grant_type: "password"
+
+}
+// password:string = '';
+// username:string = '';
 
 public columnInfoArray = [{
   label: "User Name",
@@ -38,7 +49,12 @@ public columnInfoArray = [{
   prop: "address"
 }]
 public menuData:any
-  constructor(public LoginService: LoginService) { }
+// public Obj: User;  
+
+  constructor(public LoginService: LoginService,public router : Router, public APP : AppComponent, public activatedRoute: ActivatedRoute, private cookieService: CookieService) { 
+    // this.Obj = new User();  
+
+  }
 
   ngOnInit(): void {
     this.rows = [
@@ -52,6 +68,32 @@ public menuData:any
       { name: 'Company' }
   ];
   
+  }
+
+  login()
+  {
+    // let user = {
+    //   username: this.username.trim(),
+    //   password: this.password,
+    //   grant_type: "password"
+    // };
+    debugger
+    this.LoginService.login(this.loginData).then(response=>{
+      let data:any =response
+      // data = response;
+      this.cookieService.set('username', data.username);  
+      this.cookieService.set('token', data.access_token);  
+      this.cookieService.set('roleID', data.roleId);
+      this.cookieService.set('userID', data.user_Id);
+
+
+      localStorage.setItem('token', data.access_token);
+this.APP.getMenu(data.roleId)
+      this.router.navigateByUrl('/role');
+      // [routerLink]="[ '/dashboard' ]"
+    }, error=>{
+      console.log(error);
+    })
   }
 
   loginWithUserNameAndPassword(){

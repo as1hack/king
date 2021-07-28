@@ -38,6 +38,23 @@ export class MenuService {
   
     })
   }
+  createHeader() {
+    let headers = new HttpHeaders();
+
+
+
+    // headers = headers.set('content-type', 'application/json');
+
+    let token = localStorage.getItem("token");
+    /*if access token is set then append it to headers of api */
+    if (token) {
+
+      // let token1 = JSON.parse(token).access_token;      
+      headers = headers.set('Authorization', 'Bearer ' + token)
+      // header.append('Authorization', 'Bearer ' + token);
+    }
+    return headers;
+  }
 
   createGetMenu(){
     return new Promise((resolve,reject) => {

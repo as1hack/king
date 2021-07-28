@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { UtilsService } from './services/utils.service';
 import { LoginComponent } from './Login/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import Tick from '@pqina/flip';
+
 //  importing http module
 import { HttpClientModule } from '@angular/common/http';
 import { MenuListComponent } from './Menu/menu-list/menu-list.component';
@@ -17,6 +19,10 @@ import { ShiftListComponent } from './Shift/shift-list/shift-list.component';
 import { RoleListComponent } from './Role/role-list/role-list.component';
 import { RoleService } from './services/Role/role.service';
 import { InlineErrorMsgComponent } from './Common/inline-error-msg/inline-error-msg.component';
+import { UserListComponent } from './User/user-list/user-list.component';
+import { TimerComponent } from './timer/timer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +31,16 @@ import { InlineErrorMsgComponent } from './Common/inline-error-msg/inline-error-
     MenuListComponent,
     ShiftListComponent,
     RoleListComponent,
-    InlineErrorMsgComponent
+    InlineErrorMsgComponent,
+    UserListComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     NgxDatatableModule,
     ToastrModule.forRoot(),
     

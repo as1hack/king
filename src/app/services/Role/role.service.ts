@@ -23,10 +23,10 @@ export class RoleService {
   constructor(private http: HttpClient, public utils:UtilsService) { }
 
   role(roleInfo:any){   
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + 'token')
-    // const headers = new HttpHeaders()
-    //           .set('Content-Type', 'application/json');
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Authorization', 'Bearer ' + 'token')
+    const headers = new HttpHeaders()
+              .set('Content-Type', 'application/json');
               return this.http.post(this.baseUrl + 'Role/Create', roleInfo ,{headers:headers}).toPromise();
 }
 

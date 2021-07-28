@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Login/login/login.component';
 import { MenuListComponent } from './Menu/menu-list/menu-list.component';
 import { RoleListComponent } from './Role/role-list/role-list.component';
+import { AuthService } from './services/auth.service';
 import { ShiftListComponent } from './Shift/shift-list/shift-list.component';
+import { TimerComponent } from './timer/timer.component';
+import { UserListComponent } from './User/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -15,8 +18,10 @@ const routes: Routes = [
 
   },
   { path: 'login', component: LoginComponent },
-  { path: 'menu', component: MenuListComponent },
-  { path: 'role', component: RoleListComponent },
+  { path: 'time', component: TimerComponent },
+  { path: 'user', component: UserListComponent,canActivate: [AuthService] },
+  { path: 'menu', component: MenuListComponent,canActivate: [AuthService] },
+  { path: 'role', component: RoleListComponent,canActivate: [AuthService]  },
   
 ];
 
