@@ -23,6 +23,7 @@ export class UserListComponent implements OnInit {
   public agent = "";
   public mobail = "";
   public address = "";
+  
 
   createGet: any;
   public menuBaseId: any
@@ -31,6 +32,7 @@ export class UserListComponent implements OnInit {
   public page = new Page();
   public allUser: any;
   recordId: any;
+  obj_error_msg: any;
 
   constructor(public userService: UserService,private toastr: ToastrService) { }
 
@@ -71,7 +73,54 @@ export class UserListComponent implements OnInit {
         console.error(error);       
       });
   }
+
+  /* Validation */
+  checkvalidation():any 
+  {
+    this.obj_error_msg = [];
+      if (this.staffName == null || this.staffName === '') {
+      this.obj_error_msg.push('Staff name is required');
+    }
+    if (this.Role == null || this.Role === '') {
+      this.obj_error_msg.push('Role is required');
+    } 
+    if (this.username == null || this.username === '') {
+      this.obj_error_msg.push('Username is required');
+    }
+    if (this.password == null || this.password === '') {
+      this.obj_error_msg.push('Password is required');
+    }
+    if (this.agent == null || this.agent === '') {
+      this.obj_error_msg.push('Agent is required');
+    }
+    if (this.mobail == null || this.mobail === '') {
+      this.obj_error_msg.push('Mobail is required');
+    }
+    if (this.address == null || this.address === '') {
+      this.obj_error_msg.push('Address is required');
+    }
+  
+
+    if (this.obj_error_msg.length === 0) {
+      this.obj_error_msg = [];
+      return true;
+    } 
+    else if (this.obj_error_msg.length >1) {
+      this.toastr.error('Please fill the required values');
+      return false;
+    }
+    else if (this.obj_error_msg.length = 1) {
+      this.obj_error_msg.forEach((element:any) => {
+        this.toastr.error(element);
+      });
+      return false;
+    }
+  }
+
   userCreate() {
+    if(!this.checkvalidation()) {
+      return;
+    }
     let json = {
       roleId: this.Role,
       name: this.staffName,

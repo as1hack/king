@@ -115,19 +115,19 @@
                       <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Name</label>
-                              <input class="form-control" type="text" name="name" [(ngModel)]="menuName" placeholder="Name" />
+                              <input class="form-control" type="text" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Name is required') != -1}" name="name" [(ngModel)]="menuName" placeholder="Name" />
                           </div>
                       </div>
                       <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Link</label>
-                              <input class="form-control" type="text" name="link" [(ngModel)]="link" placeholder="Name" />
+                              <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Link is required') != -1}" type="text" name="link" [(ngModel)]="link" placeholder="Name" />
                           </div>
                       </div>
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Role</label>                              
-                                <select (change)="getMenuBaseOnRoleId(Role)" [(ngModel)]="Role" class="form-control">
+                                <select (change)="getMenuBaseOnRoleId(Role)" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != -1}" [(ngModel)]="Role" class="form-control">
                                   <option value="">-- Select --</option>
                                   <option *ngFor="let item of createGet.roles"  value="{{item.id}}">{{item.name}}</option>
                                   
@@ -138,7 +138,7 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Level</label>
-                                <select [disabled]="Role =='' " (change)="checkLevelValue()"  [(ngModel)]="level" class="form-control">
+                                <select [disabled]="Role =='' " [ngClass]="{errorBorder: obj_error_msg?.indexOf('level is required') != -1}" (change)="checkLevelValue()"  [(ngModel)]="level" class="form-control">
                                   <option value="">-- Select --</option>
                                   <option>1</option>
                                   <option>2</option>
@@ -150,7 +150,7 @@
                           <div class="form-group">
                               <label class="label">Level 1</label>
                               
-                              <select [disabled]="!isMainEnable"  [(ngModel)]="mainMenu"  class="form-control">
+                              <select [disabled]="!isMainEnable" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Main menu is required') != -1}" [(ngModel)]="mainMenu"  class="form-control">
                                 <option value=null>-- Select --</option>                                
                                 <option *ngFor="let item of mainMenuData"  value="{{item.id}}">{{item.name}}</option>
                               </select>
@@ -160,7 +160,7 @@
                           <div class="form-group">
                               <label class="label">Level 2</label>
                              
-                              <select [disabled]="!isSubEnable" [(ngModel)]="subMenu" class="form-control">
+                              <select [disabled]="!isSubEnable" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Sub menu is required') != -1}" [(ngModel)]="subMenu" class="form-control">
                                   <option value=null>-- Select --</option>
                                   <option *ngFor="let item of subMenuData"  value="{{item.id}}">{{item.name}}</option>
                                 </select>
@@ -172,7 +172,7 @@
                         <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Menu Position</label>
-                              <input [disabled]="level =='' " type="number" name="position" [(ngModel)]="position" class="form-control">                            
+                              <input [disabled]="level =='' " type="number" [ngClass]="{errorBorder: obj_error_msg?.indexOf('position is required') != -1}" name="position" [(ngModel)]="position" class="form-control">                            
                           </div>
                       </div> 
                        

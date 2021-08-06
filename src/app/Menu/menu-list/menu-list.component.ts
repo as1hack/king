@@ -30,6 +30,7 @@ export class MenuListComponent implements OnInit {
   public page = new Page();
   createGet: any;
   public recordId: string;
+  obj_error_msg : any = [];
   isMainEnable: boolean
   isSubEnable: boolean
   constructor(public service: MenuService, private toastr: ToastrService) { }
@@ -65,8 +66,62 @@ export class MenuListComponent implements OnInit {
 
     })
   }
+  checkvalidation():any 
+  {
+    this.obj_error_msg = [];
+      if (this.menuName == null || this.menuName === '') {
+      this.obj_error_msg.push('Name is required');
+    }
+    if (this.link == null || this.link === '') {
+      this.obj_error_msg.push('Link is required');
+    }
+    if (this.Role == null || this.Role === '') {
+      this.obj_error_msg.push('Role is required');
+    }
+    // if (this.level == null ) {
+    //   this.obj_error_msg.push('level is required');
+    // }
+    // if (this.mainMenu == null ) {
+    //   this.obj_error_msg.push('Main menu is required');
+    // }
+    // if (this.subMenu == null ) {
+    //   this.obj_error_msg.push('Sub menu is required');
+    // }
+    if (this.position == null || this.position === '') {
+      this.obj_error_msg.push('position is required');
+    }
+  
+
+    if (this.obj_error_msg.length === 0) {
+      this.obj_error_msg = [];
+      return true;
+    } 
+    else if (this.obj_error_msg.length >1) {
+      this.toastr.error('Please fill the required values');
+      return false;
+    }
+    else if (this.obj_error_msg.length = 1) {
+      this.obj_error_msg.forEach((element:any) => {
+        this.toastr.error(element);
+      });
+      return false;
+    }
+  }
+
+
 
   getMenuGet() {
+    this.service.createGetMenu().then((data) => {
+      this.createGet = data
+
+    }).catch(error => {
+
+      this.page.totalPages = 22 / 3
+
+    })
+  }
+
+  getUserGet() {
     this.service.createGetMenu().then((data) => {
       this.createGet = data
 
@@ -150,6 +205,9 @@ export class MenuListComponent implements OnInit {
 
   }
   menuCreate() {
+    if(!this.checkvalidation()) {
+      return;
+    }
     let json = {
       roleId: this.Role,
       name: this.menuName,

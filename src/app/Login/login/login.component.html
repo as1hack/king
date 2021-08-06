@@ -9,8 +9,8 @@
             </header>
   
             <div class="inputs">
-              <input type="email" name='email' [(ngModel)]="loginData.username" class="login-input pg-input mail" placeholder="Enter Email Address">
-              <input type="password" name='password' [(ngModel)]="loginData.password" class="login-input pg-input password" placeholder="Enter Your Password">
+              <input type="email" name='email' [ngClass]="{errorBorder: obj_error_msg?.indexOf('email is required') != -1 }" [(ngModel)]="loginData.username" class="login-input pg-input mail" placeholder="Enter Email Address">
+              <input type="password" name='password' [ngClass]="{errorBorder: obj_error_msg?.indexOf('password is required') != -1}" [(ngModel)]="loginData.password" class="login-input pg-input password" placeholder="Enter Your Password">
       
   
                 
@@ -43,3 +43,4 @@
       </ngx-datatable-column>
     </ngx-datatable>
   </div> -->
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

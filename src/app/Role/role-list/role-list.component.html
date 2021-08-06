@@ -95,7 +95,7 @@
                             <div class="form-group">
                                
                                 
-                                <input class="form-control" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != -1}" name="Role" type="text" value="Enter Role" [(ngModel)]="Role" />
                             </div>
                         </div>                   
                       

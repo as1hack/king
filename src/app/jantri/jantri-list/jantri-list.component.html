@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div class="Jantri-table">
+        <div class="table-title-heads">
+            <div class="table-title">
+                jantri
+            </div>
+            <div class="table-filters">
+                <div class="table-filter">
+                    Shift
+                    <select class="form-control">
+                        <option value="DELHI BAZAR">DELHI BAZAR</option>
+                        <option value="SHREE GANESH">SHREE GANESH</option>
+                        <option value="FARIDABAD">FARIDABAD</option>
+                        <option value="GAZIYABAD">GAZIYABAD</option>
+                        <option ption value="GALI">GALI</option>
+                            <option value="DESAWAR">DESAWAR</option>
+                    </select>
+                </div>
+                <div class="table-filter">
+                    Date
+
+                    <input type="date" class="form-control" />
+                </div>
+            </div>
+            <div class="side-menu ">
+                <button class="btn btn-excel">Excel</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">1</th>
+                    <th scope="col">2</th>
+                    <th scope="col">3</th>
+                    <th scope="col">4</th>
+                    <th scope="col">5</th>
+                    <th scope="col">6</th>
+                    <th scope="col">7</th>
+                    <th scope="col">8</th>
+                    <th scope="col">9</th>
+                    <th scope="col">10</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+               
+             
+               
+              
+               
+                <tr *ngFor="let item of column;let i=index">
+                    <td *ngFor="let value of item.values;let ii=index" [attr.data-title]="value.val"><input type="number" [(ngModel)]="value[value.val]"  name={{value[value]}}  class="jantri-ghar-input"></td>
+                    <!-- {{getRowTotal(i)}} -->
+                    <td class="total-row">{{getRowTotal(i)}}</td>
+                </tr>
+                <tr>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">10171</th>
+                    <th class="total-row">111580</th>
+                </tr>
+                <tr>
+                    <td data-title="B1"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B2"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B3"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B4"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B5"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B6"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B7"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B8"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B9"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="B0"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td class="total-row">111580</td>
+                </tr>
+                <tr>
+                    <td data-title="A1"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A2"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A3"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A4"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A5"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A6"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A7"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A8"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A9"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td data-title="A0"><input type="text" value="10171" class="jantri-ghar-input"></td>
+                    <td class="total-row">111580</td>
+                </tr>
+                <tr>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">-</th>
+                    <th class="total-row">Grand Total</th>
+                    <th class="total-row">1,236,491</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

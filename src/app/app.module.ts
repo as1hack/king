@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { UtilsService } from './services/utils.service';
 import { LoginComponent } from './Login/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import Tick from '@pqina/flip';
+// import Tick from '@pqina/flip';
 
 //  importing http module
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +24,10 @@ import { TimerComponent } from './timer/timer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
+import { JantriListComponent } from './jantri/jantri-list/jantri-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RoleListComponent,
     InlineErrorMsgComponent,
     UserListComponent,
-    TimerComponent
+    TimerComponent,
+    JantriListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxDatatableModule,
+    NgxSpinnerModule,
+    NgbModule,
     ToastrModule.forRoot(),
+    NgbModule,
     
   ],
   providers: [UtilsService,RoleService],
