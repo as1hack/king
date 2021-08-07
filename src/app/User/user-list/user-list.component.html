@@ -103,7 +103,7 @@
     </ngx-datatable>
     </div>
 
-<div *ngIf="createGet" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -117,14 +117,14 @@
                       <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Staff Name</label>
-                              <input class="form-control" type="text" name="name" [(ngModel)]="staffName" placeholder="Name" />
+                              <input class="form-control" type="text " [ngClass]="{errorBorder: obj_error_msg?.indexOf('Staff name is required') != -1}" name="name" [(ngModel)]="staffName" placeholder="Name" />
                           </div>
                       </div>
                     
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Role</label>                              
-                                <select  [(ngModel)]="Role" class="form-control">
+                                <select [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != -1}"  [(ngModel)]="Role" class="form-control">
                                   <option value="">-- Select --</option>
                                   <option *ngFor="let item of createGet.roles"  value="{{item.id}}">{{item.name}}</option>
                                   
@@ -136,35 +136,35 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Username</label>
-                                <input class="form-control" type="text" name="name" [(ngModel)]="username" placeholder="Name" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Usernamee is required') != -1}" type="text" name="name" [(ngModel)]="username" placeholder="Name" />
                             </div>
                         </div>
 
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Password</label>
-                                <input class="form-control" type="password" name="name" [(ngModel)]="password" placeholder="Name" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Password is required') != -1}" type="password" name="name" [(ngModel)]="password" placeholder="Name" />
                             </div>
                         </div>
 
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Agent</label>
-                                <input class="form-control" type="text" name="name" [(ngModel)]="agent" placeholder="Name" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Agent is required') != -1}" type="text" name="name" [(ngModel)]="agent" placeholder="Name" />
                             </div>
                         </div>
 
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Mobail</label>
-                                <input class="form-control" type="tel" name="name" [(ngModel)]="mobail" placeholder="Name" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Mobail is required') != -1}" type="tel" name="name" [(ngModel)]="mobail" placeholder="Name" />
                             </div>
                         </div>
 
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Address</label>
-                                <input class="form-control" type="text" name="name" [(ngModel)]="address" placeholder="Name" />
+                                <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Address is required') != -1}" type="text" name="name" [(ngModel)]="address" placeholder="Name" />
                             </div>
                         </div>
                 
@@ -172,8 +172,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" *ngIf="!isEditMode" class="btn btn-primary" (click)="userCreate()">Add User </button>
-                <button type="button" *ngIf="isEditMode" class="btn btn-primary" (click)="updateMenu()" >Update</button>
+                <button type="button"  class="btn btn-primary" (click)="userCreate()">Add User </button>
+                <button type="button" class="btn btn-primary" (click)="updateMenu()" >Update</button>
                 <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
