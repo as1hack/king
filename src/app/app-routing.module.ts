@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JantriListComponent } from './jantri/jantri-list/jantri-list.component';
+import { JantriListComponent } from './jantri-list/jantri-list.component';
+// import { JantriListComponent } from './jantri/jantri-list/jantri-list.component';
 import { LoginComponent } from './Login/login/login.component';
 import { MenuListComponent } from './Menu/menu-list/menu-list.component';
 import { RoleListComponent } from './Role/role-list/role-list.component';

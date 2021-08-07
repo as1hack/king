@@ -33,7 +33,7 @@ export class UserService {
 
   createGetUser(){
     return new Promise((resolve,reject) => {
-       this.http.get(this.baseUrl + 'User/Create').subscribe(data => {
+       this.http.get(this.baseUrl + 'User/Create',{headers:this.utils.createHeader()}).subscribe(data => {
         resolve(data);
       }, error => {
         reject(error);

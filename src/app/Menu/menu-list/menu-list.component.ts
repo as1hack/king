@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 // Service 
 import { ColumnMode } from "@swimlane/ngx-datatable";
 import { MenuService } from 'src/app/services/Menu/menu.service';
@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 /* model */
 import { Page } from '../../Common/page';
+declare var $:any;
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
@@ -33,7 +34,7 @@ export class MenuListComponent implements OnInit {
   obj_error_msg : any = [];
   isMainEnable: boolean
   isSubEnable: boolean
-  constructor(public service: MenuService, private toastr: ToastrService) { }
+  constructor(public service: MenuService, private toastr: ToastrService,private elementRef: ElementRef) { }
 
 
   ngOnInit(): void {
@@ -66,6 +67,38 @@ export class MenuListComponent implements OnInit {
 
     })
   }
+//   keytab(event){
+//     let element = event.srcElement.nextElementSibling; // get the sibling element
+
+//     if(element == null)  // check if its null
+//         return;
+//     else
+//         element.focus();   // focus if not null
+// }
+
+keytab(event) {
+  $(document).on('keypress', 'input,select', function (e) {
+    if (e.which == 13) {
+      const textboxes = $('input,select');
+      const currentBoxNumber = textboxes.index(this);
+      const nextBox = textboxes[currentBoxNumber + 1]
+      nextBox.focus();
+      // nextBox.select();
+
+
+        // e.preventDefault();
+      //   var $next = $('[tabIndex=' + (+this.tabIndex + 1) + ']');
+      //   console.log($next.length);
+      //   if (!$next.length) {
+      //  $next = $('[tabIndex=1]');        }
+        // $next.focus() .click();
+        // $(this).next().focus();
+
+
+    }
+});
+}
+
   checkvalidation():any 
   {
     this.obj_error_msg = [];

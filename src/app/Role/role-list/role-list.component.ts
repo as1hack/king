@@ -27,10 +27,10 @@ export class RoleListComponent implements OnInit {
   public editmode: any;
   public recordId :string;
   obj_error_msg : any = [];
-  json={
-    name:this.Role,
-    recordState:'Active'
-  }
+  // json={
+  //   name:this.Role,
+  //   recordState:'Active'
+  // }
 
   isEditMode: boolean;
   constructor(public service:RoleService,private toastr: ToastrService) { }
@@ -66,13 +66,14 @@ export class RoleListComponent implements OnInit {
       this.obj_error_msg = [];
       return true;
     } 
-    else if (this.obj_error_msg.length >1) {
+    else if (this.obj_error_msg.length >2) {
       this.toastr.error('Please fill the required values');
       return false;
     }
     else if (this.obj_error_msg.length = 1) {
       this.obj_error_msg.forEach((element:any) => {
         this.toastr.error(element);
+        console.log('error',this.obj_error_msg)
       });
       return false;
     }
@@ -83,7 +84,11 @@ export class RoleListComponent implements OnInit {
       return;
     }
     debugger
-this.service.role(this.json).then((response : any) => {
+    let json={
+      name:this.Role,
+      recordState:'Active'
+    }
+this.service.role(json).then((response : any) => {
   alert('succes')
  }, error => {
    alert('error')
@@ -97,6 +102,9 @@ this.service.role(this.json).then((response : any) => {
     this.Role=row.name;
     this.recordId=row.id
     this.isEditMode=true;
+  }
+  onDelete(row){
+    this.recordId=row.id
   }
   onCreate(){
     this.Role=null
@@ -156,9 +164,9 @@ this.service.role(this.json).then((response : any) => {
       
 
   }
-  deleteRole(event:any){
+  deleteRole(){
     let json={
-      id:event.id,
+      id:this.recordId,
       recordState:'Deleted'
     }
     this.service.deleteRole(json) .subscribe(

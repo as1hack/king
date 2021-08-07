@@ -52,7 +52,7 @@ getRole(event:any){
   const headers = new HttpHeaders()
   .set('Authorization', 'Bearer ' + this.cookieService.get('token'))
    
-  return this.http.get(this.baseUrl + 'Role/GetAll?pageIndex=' +event.pageIndex+ '&pageSize='+ event.pageSize);
+  return this.http.get(this.baseUrl + 'Role/GetAll?pageIndex=' +event.pageIndex+ '&pageSize='+ event.pageSize,{headers:this.utils.createHeader()});
   
 }
 deleteRole(data:any): Observable<any[]>{

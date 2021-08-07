@@ -115,19 +115,23 @@
                       <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Name</label>
-                              <input class="form-control" type="text" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Name is required') != -1}" name="name" [(ngModel)]="menuName" placeholder="Name" />
+                              <input class="form-control" id='1' type="text" required tabIndex="1" (keyup.enter)="keytab($event)" [ngClass]="obj_error_msg.indexOf('Name is required') != -1 &&
+                              (menuName == null || menuName == 'null' || menuName == ' '  ) ? 'errorsShow':''"
+                 
+                                name="name" [(ngModel)]="menuName" placeholder="Name" />
                           </div>
                       </div>
+                      <!-- [ngClass]="{errorBorder: obj_error_msg?.indexOf('Name is required') != -1}" -->
                       <div class="col-md-6 col-lg-4">
                           <div class="form-group">
                               <label class="label">Link</label>
-                              <input class="form-control" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Link is required') != -1}" type="text" name="link" [(ngModel)]="link" placeholder="Name" />
+                              <input class="form-control" id='2' required tabIndex="2" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Link is required') != -1}" type="text" name="link" [(ngModel)]="link" placeholder="Name" />
                           </div>
                       </div>
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group">
                                 <label class="label">Role</label>                              
-                                <select (change)="getMenuBaseOnRoleId(Role)" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != -1}" [(ngModel)]="Role" class="form-control">
+                                <select (change)="getMenuBaseOnRoleId(Role)" (keyup.enter)="keytab($event)" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != -1}" [(ngModel)]="Role" class="form-control">
                                   <option value="">-- Select --</option>
                                   <option *ngFor="let item of createGet.roles"  value="{{item.id}}">{{item.name}}</option>
                                   
@@ -189,3 +193,5 @@
         </div>
     </div>
   </div>
+
+ 

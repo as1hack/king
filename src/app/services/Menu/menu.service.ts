@@ -27,7 +27,7 @@ export class MenuService {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/GetAll?pageIndex=0&pageSize=10').subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/GetAll?pageIndex=0&pageSize=10',{ headers: this.utils.createHeader() }).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -64,7 +64,7 @@ export class MenuService {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/Create').subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/Create',{ headers: this.utils.createHeader() }).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -80,7 +80,7 @@ export class MenuService {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/GetByRoleId?roleId=' + id).subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/GetByRoleId?roleId=' + id,{headers:this.utils.createHeader()}).subscribe(data => {
         
         resolve(data);
       }, error => {
