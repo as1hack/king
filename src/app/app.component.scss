@@ -8,7 +8,7 @@ img {
     background-size: cover;
     width: 100vw;
     min-height: 100vh;
-    padding: 100px 40px;
+    padding: 10px 40px;
 }
 
 .app {
@@ -80,7 +80,67 @@ header {
     align-items: flex-end;
     justify-content: center;
 }
+.user-profile-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 
+  .user-profile-options .upo-about {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    padding-left: 10px;
+  }
+
+  .user-profile-options .upo-about button.btn {
+    font-size: 16px;
+    line-height: 17px;
+    font-weight: 700;
+    color: #5b5b5b;
+    background-color: #fff;
+    text-transform: none;
+    text-align: left;
+    padding: 0;
+    margin-top: -8px;
+    text-transform: capitalize;
+  }
+  .dropdown-toggle:after {
+    left: 6px;
+    position: relative;
+}
+
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+  }
+  .dropdown-toggle::after {
+    width: 10px;
+    height: 10px;
+    border: 1px solid;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+  }
+  
 header img {
     width: 70px;
     height: 70px;
@@ -151,4 +211,7 @@ footer button {
     button {
         padding: 18px 15px;
     }
+    .errorBorder {  
+        border-color: 1px solid red;  
+    } 
 }

@@ -5,7 +5,8 @@ import { ColumnMode } from "@swimlane/ngx-datatable";
 import { Router,ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';  
 import { CookieService } from 'ngx-cookie-service';  
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
  public rows :any;
  public columns: any;
  public columnMode = ColumnMode;
+ obj_error_msg : any = [];
+
  public resultList = [{
   user_name: "Test",
   email: "test@example.com",
@@ -51,12 +54,14 @@ public columnInfoArray = [{
 public menuData:any
 // public Obj: User;  
 
-  constructor(public LoginService: LoginService,public router : Router, public APP : AppComponent, public activatedRoute: ActivatedRoute, private cookieService: CookieService) { 
+  constructor(public LoginService: LoginService,private toaster : ToastrService,
+    public router : Router, public APP : AppComponent, public activatedRoute: ActivatedRoute, private cookieService: CookieService,private spinner: NgxSpinnerService) { 
     // this.Obj = new User();  
 
   }
 
   ngOnInit(): void {
+    
     this.rows = [
       { name: 'Austin', gender: 'Male', company: 'Swimlane' },
       { name: 'Dany', gender: 'Male', company: 'KFC' },
@@ -70,6 +75,37 @@ public menuData:any
   
   }
 
+    /* Validation */
+    checkvalidation():any 
+    {
+      this.obj_error_msg = [];
+        if (this.loginData.username == null || this.loginData.username === '') {
+
+        this.obj_error_msg.push('email is required');
+        
+      }
+      if (this.loginData.password == null || this.loginData.password === '') {
+        this.obj_error_msg.push('password is required');
+        
+      }
+  
+      if (this.obj_error_msg.length === 0) {
+        this.obj_error_msg = [];
+        return true;
+      } 
+      else if (this.obj_error_msg.length >1) {
+        this.toaster.error('Please fill the required values');
+        return false;
+      }
+      else if (this.obj_error_msg.length = 1) {
+        this.obj_error_msg.forEach((element:any) => {
+          this.toaster.error(element);
+        });
+        return false;
+      }
+    }
+
+
   login()
   {
     // let user = {
@@ -77,7 +113,12 @@ public menuData:any
     //   password: this.password,
     //   grant_type: "password"
     // };
+    if(!this.checkvalidation()) {
+      return;
+    }
     debugger
+    this.spinner.show();
+    
     this.LoginService.login(this.loginData).then(response=>{
       let data:any =response
       // data = response;
@@ -90,8 +131,10 @@ public menuData:any
       localStorage.setItem('token', data.access_token);
 this.APP.getMenu(data.roleId)
       this.router.navigateByUrl('/role');
+      this.spinner.hide();
       // [routerLink]="[ '/dashboard' ]"
     }, error=>{
+      this.spinner.hide();
       console.log(error);
     })
   }

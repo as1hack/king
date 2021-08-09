@@ -27,7 +27,7 @@ export class MenuService {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/GetAll?pageIndex=0&pageSize=10').subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/GetAll?pageIndex=0&pageSize=10',{ headers: this.utils.createHeader() }).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -55,13 +55,16 @@ export class MenuService {
     }
     return headers;
   }
+  changepassword(json: any) {
+    return this.http.post(this.baseUrl + 'User/ChangePassword', json, { headers: this.utils.createHeader() }).toPromise();
+  }
 
   createGetMenu(){
     return new Promise((resolve,reject) => {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/Create').subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/Create',{ headers: this.utils.createHeader() }).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -77,7 +80,7 @@ export class MenuService {
       // const headers = new HttpHeaders()
       //              .set('Content-Type', 'application/json');
       // ,  { headers: headers }
-      this.http.get(this.baseUrl + 'Menu/GetByRoleId?roleId=' + id).subscribe(data => {
+      this.http.get(this.baseUrl + 'Menu/GetByRoleId?roleId=' + id,{headers:this.utils.createHeader()}).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -93,7 +96,7 @@ export class MenuService {
       const headers = new HttpHeaders()
                    .set('Content-Type', 'application/json');
       
-      this.http.post(this.baseUrl + 'Menu/UpdateRecordState',json,{headers:headers}).subscribe(data => {
+      this.http.post(this.baseUrl + 'Menu/UpdateRecordState',json,{headers:this.utils.createHeader()}).subscribe(data => {
         
         resolve(data);
       }, error => {
@@ -112,7 +115,7 @@ export class MenuService {
   // const options = new RequestOptions({ headers: headers });
     // return this.http.post(this.baseUrl + 'Role/UpdateRecordState', data ,{headers:headers}).toPromise()
   
-    return this.http.post<any[]>(this.baseUrl + 'Menu/Update', data  ,{headers:headers})
+    return this.http.post<any[]>(this.baseUrl + 'Menu/Update', data  ,{headers:this.utils.createHeader()})
    
      
   }
@@ -140,7 +143,7 @@ export class MenuService {
   return new Promise((resolve,reject) => {
     const headers = new HttpHeaders()
                  .set('Content-Type', 'application/json');
-    this.http.post(this.baseUrl + 'Menu/Create',menuInfo,  { headers: header }).subscribe(data => {
+    this.http.post(this.baseUrl + 'Menu/Create',menuInfo,  { headers: this.utils.createHeader() }).subscribe(data => {
       alert('success api')
       resolve(data);
     }, error => {
