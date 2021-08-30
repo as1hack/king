@@ -81,4 +81,15 @@ updateRole(data:any): Observable<any[]>{
  
    
 }
+
+createRolePermission(data:any): Observable<any[]>{
+  let headers = new HttpHeaders();
+
+  headers = headers.set('Authorization', 'Bearer ' + this.cookieService.get('token') )
+
+  return this.http.post<any[]>(this.baseUrl + 'Role/CreateRolePermission', data  ,{headers:this.utils.createHeader()})
+ 
+   
+}
+
 }

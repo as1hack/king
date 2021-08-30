@@ -71,7 +71,11 @@
     <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
         <span class="local-sort" title="Action"> Action </span>        
     </ng-template>
+    <i class="fas fa-address-card"></i>
+
     <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <i class="fa fa address-card" aria-hidden="true"></i>
+
         <span class="fa fa trash"  >
           
         <span style="cursor: pointer;padding-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(row)">
@@ -86,6 +90,19 @@
                   </svg> 
             </span> 
         </span>
+    </ng-template>
+</ngx-datatable-column>
+
+<ngx-datatable-column   name="#" prop="name" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Action"> Role permission </span>        
+    </ng-template>
+    <i class="fas fa-address-card"></i>
+
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <button (click)="addPermission(row)"type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#exampleModal2">
+            Add Role<i class="fa fa-plus-circle pr-12" ></i>
+         </button>        
     </ng-template>
 </ngx-datatable-column>
 </ngx-datatable>
@@ -117,6 +134,152 @@
             <div class="modal-footer">
                 <button type="button" *ngIf="!isEditMode" class="btn btn-primary" (click)="createRole()" >Create Role</button>
                 <button type="button" *ngIf="isEditMode" class="btn btn-primary" (click)="updateRecord()" >Update Role</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Role Permission</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row align-items-center ">
+
+
+                        <div class="form-group">
+                            <label for="options">Options:</label>
+                            <div *ngFor="let item of allRole.items">
+                                <label>
+                                    <input type="checkbox"
+                                           name="options"
+                                           (change)="getChildId(item,$event)"
+                                           value="{{item.id}}"
+                                           [(ngModel)]="item.childId"/>
+                                    {{item.name}}
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Devloper</label>
+                                <input  class="checkbox" type="checkbox" 
+                            [(ngModel)] ="Devloper" 
+                                  name="name"  />
+                            </div>
+                        </div>       
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Super Admin</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="SuperAdmin"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>   
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Distributor</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Distributor"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>   
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Retailer</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Retailer"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>  
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Fanter</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Fanter"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>  
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Cash Agent</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="CashAgent"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>  
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Admin</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Admin"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div> 
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Manager</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Manager"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div> 
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Marketer</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Marketer"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Auditor</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="Auditor"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Data Entry Operator</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="dataOperator"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Tally Operator</label>
+                                <input class="checkbox"  type="checkbox" 
+                            [(ngModel)] ="tallyOperator"
+                                  name="name"  placeholder="Name" />
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-primary" (click)="createPermission()"  >Create Role</button>
+                <button type="button"  class="btn btn-primary"  >Update Role</button>
                 <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

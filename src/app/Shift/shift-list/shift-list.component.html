@@ -1,1 +1,75 @@
 <p>shift-list works!</p>
+<div class="modal-header-btn" style="margin-inline-end: auto;">
+    <div class="container_name navbar-brand"  style="margin-right: auto;">Shift</div>
+    <div>
+<button  type="button" class="btn btn-primary" data-bs-toggle="modal"   data-bs-target="#exampleModal">
+  Add Shift<i class="fa fa-plus-circle pr-12"></i>
+</button>
+
+</div>
+</div>
+
+
+<div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5  class="modal-title" id="exampleModalLabel">Add Shift</h5>
+                <!-- <h5 *ngIf="isEditMode" class="modal-title" id="exampleModalLabel">Edit Shift</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                              <label class="label">Shift Name</label>
+                              <input class="form-control" id='1' type="text" required tabIndex="1"  
+                 
+                                name="name" [(ngModel)]="shiftName" placeholder="Name" />
+                          </div>
+                      </div>
+                      <!-- [ngClass]="{errorBorder: obj_error_msg?.indexOf('Name is required') != -1}" -->
+                      <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                              <label class="label">Open Date</label>
+                              <input type="date" [(ngModel)]="openDate" class="form-control" />
+                            </div>
+                      </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label class="label">Next Day</label>
+                          <ui-switch [(ngModel)]="nextDay"></ui-switch>
+                             </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="label">Shift Working For</label>
+                                <select  [(ngModel)]="shiftWorking" class="form-control">
+                                  <option value="">-- Select --</option>
+                                  <option>Both</option>
+                                  <option>Mobail</option>
+                                  <option>Web</option>
+                                </select>
+                            </div>
+                        </div>   
+                        
+                        <div class="col-md-6 col-lg-4" *ngFor="let item of createGet.roles;  let i=index">
+                            <div class="form-group">
+                                  <label class="label">{{item.name}}</label>
+                                <input type="time" name="rolePermission" [(ngModel)]="rolePermission[i]?" class="form-control" />
+                              </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="createPermission()" class="btn btn-primary" >Save </button>
+                <!-- <button type="button"  class="btn btn-primary"  >Update</button> -->
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -19,6 +19,21 @@ export class RoleListComponent implements OnInit {
   public columns: any;
   public columnMode = ColumnMode;
   public Role=null
+  public Devloper:string;
+  public SuperAdmin:string;
+  public Distributor:string;
+  public Retailer:string;
+  public Fanter:string;
+  public CashAgent:string;
+  public Admin:string;
+  public Manager:string;
+  public Marketer:string;
+  public Auditor:string;
+  public dataOperator:string;
+  public tallyOperator:string;
+
+
+
   public error_type !: String
   public page = new Page();
   public errorMsg: string[] = [];
@@ -26,6 +41,9 @@ export class RoleListComponent implements OnInit {
   public editview = false;
   public editmode: any;
   public recordId :string;
+  public baseId :string;
+  public childId :string;
+
   obj_error_msg : any = [];
   // json={
   //   name:this.Role,
@@ -33,6 +51,9 @@ export class RoleListComponent implements OnInit {
   // }
 
   isEditMode: boolean;
+  selectedItemsList: any;
+  checkedID: any;
+  checkedIDs=[];
   constructor(public service:RoleService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -97,6 +118,20 @@ this.service.role(json).then((response : any) => {
   
  
   }
+  getChildId(item,event){
+    // this.childId=item.id
+    if(event.target.checked) {
+
+    this.checkedIDs.push(item.id);
+    console.log(this.checkedIDs)
+    }
+  }
+
+  addPermission(row){
+    this.recordId=row.id
+console.log(this.recordId)
+console.log('child',this.childId)
+  }
 
   onEdit(row){
     this.Role=row.name;
@@ -110,6 +145,29 @@ this.service.role(json).then((response : any) => {
     this.Role=null
     this.isEditMode=false;
   }
+
+
+  createPermission(){
+    let json={
+      baseRoleId:this.recordId,
+      childRoles:this.checkedIDs,
+      recordState:'Active',
+
+    }
+    this.service.createRolePermission(json) .subscribe(
+      (response) => {                           //Next callback
+        this.setPage({ offset: 0, pageSize: 10})
+       this.toastr.success('Success', 'response');
+       alert('success')
+      },
+      (error) => {              
+        this.setPage({ offset: 0, pageSize: 10})  
+        alert('error')              //Error callback
+      }
+    )
+   
+  }
+
   updateRecord(){
     let json={
       id:this.recordId,

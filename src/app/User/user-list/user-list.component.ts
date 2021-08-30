@@ -150,7 +150,6 @@ export class UserListComponent implements OnInit {
   
 
   onCreate(){
-    this.Role=null
     this.isEditMode=false;
   }
 
@@ -197,11 +196,14 @@ export class UserListComponent implements OnInit {
     
   }
 
+  onDelete(row){
+    this.recordId=row.id
+  }
  
 
-  deleteUser(event: any) {
+  deleteUser() {
     let json = {
-      id: event.id,
+      id:this.recordId,
       recordState: 'Deleted'
     }
     this.userService.deleteUser(json).then((data) => {

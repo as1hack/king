@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 // Service 
 import { ColumnMode } from "@swimlane/ngx-datatable";
 import { MenuService } from 'src/app/services/Menu/menu.service';
@@ -34,6 +34,16 @@ export class MenuListComponent implements OnInit {
   obj_error_msg : any = [];
   isMainEnable: boolean
   isSubEnable: boolean
+  @HostListener('document:keyup', ['$event'])
+  handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if(event.key === 'F12')
+    event.preventDefault();
+
+    {
+alert("f12")    }
+event.preventDefault();
+
+  }
   constructor(public service: MenuService, private toastr: ToastrService,private elementRef: ElementRef) { }
 
 
@@ -76,6 +86,16 @@ export class MenuListComponent implements OnInit {
 //         element.focus();   // focus if not null
 // }
 
+keyDownFunction(event) {
+  $(document).on('keypress',  function (e) {
+    if (e.which == 13) {
+               alert("F1 was pressed!!");
+          // return false;
+        }
+      });
+      }
+      
+
 keytab(event) {
   $(document).on('keypress', 'input,select', function (e) {
     if (e.which == 13) {
@@ -98,6 +118,31 @@ keytab(event) {
     }
 });
 }
+ 
+arrowKeyChange(event) {
+  $(document).on('keypress', 'input,select', function (e) {
+    if (e.which == 39) {
+      const textboxes = $('input,select');
+      const currentBoxNumber = textboxes.index(this);
+      const nextBox = textboxes[currentBoxNumber + 1]
+      nextBox.focus();
+      // nextBox.select();
+
+
+        // e.preventDefault();
+      //   var $next = $('[tabIndex=' + (+this.tabIndex + 1) + ']');
+      //   console.log($next.length);
+      //   if (!$next.length) {
+      //  $next = $('[tabIndex=1]');        }
+        // $next.focus() .click();
+        // $(this).next().focus();
+
+
+    }
+});
+}
+
+
 
   checkvalidation():any 
   {
@@ -165,9 +210,9 @@ keytab(event) {
     })
   }
 
-  deleteMenu(event: any) {
+  deleteMenu() {
     let json = {
-      id: event.id,
+      id:this.recordId,
       recordState: 'Deleted'
     }
     this.service.deleteMenu(json).then((data) => {
@@ -182,6 +227,12 @@ keytab(event) {
     this.Role=null
     this.isEditMode=false;
   }
+  onDelete(row){
+    this.recordId=row.id
+  }
+
+
+
   checkLevelValue() {
 
     this.isMainEnable = this.level > '1' ? true : false;

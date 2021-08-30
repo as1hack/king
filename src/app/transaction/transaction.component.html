@@ -1,0 +1,246 @@
+<div class="table-title-heads" style="margin-inline-end: auto;">
+    <div class="container_name navbar-brand">Live Transactions</div>
+    <div class="table-filters">
+        <div class="table-filter">
+            Shift
+            <select class="form-control">
+                <option value="DELHI BAZAR">DELHI BAZAR</option>
+                <option value="SHREE GANESH">SHREE GANESH</option>
+                <option value="FARIDABAD">FARIDABAD</option>
+                <option value="GAZIYABAD">GAZIYABAD</option>
+                <option ption value="GALI">GALI</option>
+                    <option value="DESAWAR">DESAWAR</option>
+            </select>
+        </div>
+        <div class="table-filter">
+            Date
+
+            <input type="date" class="form-control" />
+        </div>
+        <div class="table-filter">
+           
+
+            <input type="text" placeholder="Search Party..." class="form-control" />
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+                Search (F5)<i class="fa fa-plus-circle"></i>
+                </button>
+            </div>
+        </div>
+       
+    </div>
+
+    <label class="table-switch">
+        <input type="checkbox" name="dat-active" />
+        <div class="switch-body">
+        <span class="active">Active</span>
+        <span class="deleted">Deleted</span>
+        </div>
+    </label>
+</div>
+
+
+<div class="content-card">
+<ngx-datatable 
+
+ class="material server-scrolling-demo"
+[columnMode]="columnMode.force" [headerHeight]="40" [externalPaging]="true"   [footerHeight]="50" [rowHeight]="'auto'" >
+<ngx-datatable-column   name="#" prop="name"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Status"> S. No </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text">
+            <!-- {{row.name }} --> 
+            {{rowIndex+1}}
+          
+        </span>
+        <!-- <span *ngIf="editmode && editview" class="form-group">
+                               
+                                
+            <input class="form-control" name="Role" type="text" value="Enter Role"  />
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="U/J"   [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="U/J"> U / J </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="text">
+            <!-- {{row.name }} --> 
+           
+          
+        </span>
+        <!-- <span *ngIf="editmode && editview" class="form-group">
+                               
+                                
+            <input class="form-control" name="Role" type="text" value="Enter Role"  />
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="Party" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Party"> Party </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="badge bg-success" *ngIf="row.recordState=='Active' ">
+            <!-- {{row.name }} --> 
+           
+          
+        </span>
+        <!-- <span  class="badge bg-danger" *ngIf="row.recordState =='Inactive' ">
+           
+           
+            
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="Rate" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Rate"> Rate </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="fa fa trash"  >
+          
+        <span style="cursor: pointer;padding-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+            </span> 
+            <span data-bs-toggle="modal"  data-bs-target="#exampleModal1" style="cursor: pointer;" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill"style="color: #ff0119!important;" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                  </svg> 
+            </span> 
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="Amount" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Amount"> Amount </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="badge bg-success">
+            <!-- {{row.name }} --> 
+           
+          
+        </span>
+        <!-- <span  class="badge bg-danger" *ngIf="row.recordState =='Inactive' ">
+           
+           
+            
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+
+<ngx-datatable-column   name="#" prop="Added" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Added"> Added </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="badge bg-success">
+            <!-- {{row.name }} --> 
+           
+          
+        </span>
+        <!-- <span  class="badge bg-danger" *ngIf="row.recordState =='Inactive' ">
+           
+           
+            
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="Updated" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Updated"> Updated </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="badge bg-success">
+            <!-- {{row.name }} --> 
+           
+          
+        </span>
+        <!-- <span  class="badge bg-danger" *ngIf="row.recordState =='Inactive' ">
+           
+           
+            
+        </span> -->
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column   name="#" prop="Action" [draggable]="true" [resizeable]="true" cellClass="overlaping">   
+    <ng-template let-rowIndex="rowIndex" ngx-datatable-header-template>
+        <span class="local-sort" title="Action"> Action </span>        
+    </ng-template>
+    <ng-template let-editmode="editmode" let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+        <span class="fa fa trash"  >
+          
+        <span style="cursor: pointer;padding-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+            </span> 
+            <span data-bs-toggle="modal"  data-bs-target="#exampleModal1" style="cursor: pointer;" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill"style="color: #ff0119!important;" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                  </svg> 
+            </span> 
+        </span>
+    </ng-template>
+</ngx-datatable-column>
+</ngx-datatable>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row align-items-center ">
+                        <div class="col-md-6"> <label class="label" style="
+                            font-weight: 600;
+                        ">Role</label></div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="form-group mb-0">
+                               
+                                <!-- [ngClass]="{errorBorder: obj_error_msg?.indexOf('Role is required') != 1}" -->
+                                <input class="form-control"
+                                 name="Role" type="text" value="Enter Role"  required />
+                            </div>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" >Create Role</button>
+                <button type="button" class="btn btn-primary"  >Update Role</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <ng-template let-rowIndex="rowIndex" let-row="row"> -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">    
+                <p>Are you sure you want to delete this?</p>    
+            </div>  
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-primary"  >Yes</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </ng-template> -->

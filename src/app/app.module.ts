@@ -1,5 +1,5 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 // import Tick from '@pqina/flip';
 
 //  importing http module
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { MenuListComponent } from './Menu/menu-list/menu-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ShiftListComponent } from './Shift/shift-list/shift-list.component';
@@ -27,7 +27,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
 import { JantriListComponent } from './jantri/jantri-list/jantri-list.component';
+// import { BrowserModule } from 'node_modules2/@angular/platform-browser/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UiSwitchModule } from 'ngx-toggle-switch';
+import { RolePermissionComponent } from './role-permission/role-permission.component';
+import { UserJantriComponent } from './jantri/user-jantri/user-jantri.component';
+import { TransactionComponent } from './transaction/transaction.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,19 +45,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InlineErrorMsgComponent,
     UserListComponent,
     TimerComponent,
-    JantriListComponent
+    JantriListComponent,
+    RolePermissionComponent,
+    UserJantriComponent,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    // HttpClientModule,
     HttpClientModule,
+
     BrowserAnimationsModule,
     NgxDatatableModule,
     NgxSpinnerModule,
-    NgbModule,
+    // NgbModule,
     ToastrModule.forRoot(),
     NgbModule,
+    UiSwitchModule,
     
   ],
   providers: [UtilsService,RoleService],

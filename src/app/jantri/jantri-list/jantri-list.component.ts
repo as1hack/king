@@ -46,12 +46,20 @@ export class JantriListComponent implements OnInit {
     ]
     // this.columnInput=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
   }
+
+  utarData(){
+    for (let i = 0; i < this.column.length; i++) {
+
+   return this.column[0]['number'][i].number.map((a)=> {return a[a.val]}).reduce((a,b)=> {return a +b ;})
+    }
+  }
   getRowTotal(index:number){
   //let  values:[{1:1,val:1},{2:2,val:2},{3:3,val:3},{4:4,val:4},{5:5,val:5},{6:6,val:6},{7:7,val:7},{8:8,val:8},{9:9,val:9},{10:10,val:10}]
   console.log('sdfsdf',this.column[0]['number'][index].values);
-  
-return this.column[0]['number'][index].values.map((a)=> {return a[a.val]}).reduce((a,b)=> {return a +b ;})
-  }
+  for (let i = 0; i < this.column.length; i++) {
+return this.column[i]['number'][index].values.map((a)=> {return a[a.val]}).reduce((a,b)=> {return a +b ;})
+    }
+    }
   getFirstColumnTotal(){
  this.firstColumn=[this.column[0]['number'][0].values[0]["1"],this.column[0]['number'][1].values[0]["11"],this.column[0]['number'][2].values[0]["21"],this.column[0]['number'][3].values[0]["31"],this.column[0]['number'][4].values[0]["41"],this.column[0]['number'][5].values[0]["51"],this.column[0]['number'][6].values[0]["61"],this.column[0]['number'][7].values[0]["71"],this.column[0]['number'][8].values[0]["81"],this.column[0]['number'][9].values[0]["91"]].reduce((a,b)=> {return a +b ;})
  return this.firstColumn
@@ -121,5 +129,6 @@ keytab(event) {
     }
 });
 }
+
 
 }
