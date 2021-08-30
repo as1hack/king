@@ -1,0 +1,155 @@
+<nav *ngIf="!LoginService.loggedIn()" class="navbar navbar-expand-lg lelecon-navbar">
+<<<<<<< HEAD
+    <div  class="container-fluid">
+=======
+    <div  class="container">
+>>>>>>> 9b1e9bbbb1af3b13370e79fec1b6f6cd3131c2e0
+        <a class="navbar-brand" href="#">
+            King 007
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Partner with Us</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <i class="fa fa-bag"></i>
+                    </a>
+                </li>
+
+                <li *ngIf="LoginService.loggedIn()"class="nav-item">
+                    <a class="btn btn-outline" href="#">Log in</a>
+                </li>
+                <li *ngIf="LoginService.loggedIn()" class="nav-item">
+                    <a class="btn btn-theme" data-bs-toggle="modal"  data-bs-target="#exampleModal">Sign up</a>
+                </li>
+            </ul>
+
+            <div class="user-profile-options">
+                <div class="upo-img">
+                    <img src="..\assets\login-user-icon.png" />
+                </div>
+                    <div class="upo-about">
+<<<<<<< HEAD
+                    <small *ngIf="!LoginService.loggedIn() " style="
+                    font-size: 10px;
+                    line-height: 10px;
+                " >Welcome </small>
+                    <div ngbDropdown class="d-inline-block">
+                        <button *ngIf="!LoginService.loggedIn()" class="btn " id="dropdownBasic1" ngbDropdownToggle>{{userDisplayName}}</button>
+=======
+                    <small *ngIf="!LoginService.loggedIn()" >Welcome </small>
+                    <div ngbDropdown class="d-inline-block">
+                        <button *ngIf="!LoginService.loggedIn()" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{userDisplayName}}</button>
+>>>>>>> 9b1e9bbbb1af3b13370e79fec1b6f6cd3131c2e0
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                          <button ngbDropdownItem data-bs-toggle="modal" data-bs-target="#exampleModal2" >Change Password</button>
+                          <button (click)="logout()"  ngbDropdownItem>Sign Out</button>
+                         
+                        </div>
+                      </div>
+                
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+<<<<<<< HEAD
+<ul *ngIf="!LoginService.loggedIn()"  class="navigation-dropdown-listing">
+    <div class="container">
+=======
+<ul class="navigation-dropdown-listing">
+    <div *ngIf="!LoginService.loggedIn()" class="container">
+>>>>>>> 9b1e9bbbb1af3b13370e79fec1b6f6cd3131c2e0
+        <li *ngFor="let level1 of menuData;" class="navigation-item">
+            <a class="navigation-link">{{level1.name}}</a>
+            <ul *ngIf="level1.childMenus.length>0" class="navigation-group">
+                <li *ngFor="let level2 of level1.childMenus;" class="navigation-item">
+                    <a class="navigation-link"(click)="goToModule(level2)" >{{level2.name}}</a>
+                </li>
+                <!-- <li class="navigation-item">
+                    <a class="navigation-link">Option</a>
+                </li>
+                <li class="navigation-item">
+                    <a class="navigation-link">Option</a>
+                </li> -->
+            </ul>
+        </li>
+     
+     
+      
+    </div>
+</ul>
+<router-outlet>
+</router-outlet>
+
+<div  class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <h5  class="modal-title"  id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="label">Old Password</label>
+                                <input class="form-control" type="text" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Password is required') != -1}" name="currentPassword" [(ngModel)]="passwordData.oldPassword"  placeholder="Current Password" />
+                            </div>
+                        </div>
+
+                      <div class="col-md-12 col-lg-12">
+                          <div class="form-group">
+                              <label class="label">New Password</label>
+                              <input class="form-control" type="text" [ngClass]="{errorBorder: obj_error_msg?.indexOf('New Password is required') != -1}" name="newPassword" [(ngModel)]="newPassword"  placeholder="New Password" />
+                          </div>
+                      </div>
+                     
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="label" >Confirm Password</label>                              
+                                <input class="form-control" type="text" [ngClass]="{errorBorder: obj_error_msg?.indexOf('Confirm Password is required') != -1}" name="Confirm Password" [(ngModel)]="passwordData.newPassword"  placeholder="Confirm Password" />
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+                <button type="button" (click)="changePassword()"  class="btn btn-primary" >Change</button>
+                <button type="button" class="btn btn-link text-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<<<<<<< HEAD
+<footer *ngIf="!LoginService.loggedIn()" class="footer" style="bottom:0px;padding: 5px;position:absolute;color: #fff;background: #3b8fb5;border-color: #3b8fb5;">
+=======
+<footer *ngIf="!LoginService.loggedIn()" class="footer" style="bottom:0px;position:fixed;color: #fff;background: #3b8fb5;border-color: #3b8fb5;">
+>>>>>>> 9b1e9bbbb1af3b13370e79fec1b6f6cd3131c2e0
+    <div id="Copyright" style="text-align:center;">
+        <!-- &copy; American Preclinical Services - APSFlightLog.com {{year}} -->
+        &copy; Copyright {{year}}, Example Corporation
+    </div>
+</footer>

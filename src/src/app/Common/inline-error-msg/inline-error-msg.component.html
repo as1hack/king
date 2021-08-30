@@ -1,0 +1,12 @@
+<div class="alert alert-danger" style="padding: 5px;margin-bottom:10px" >
+    <div>
+      <div style="position: absolute; font-size: 17px;">
+        <span [class]="iconClass" [title]="error_type"></span>
+      </div>
+      <div style="margin: 0px 0px 0px 30px;">
+        <span *ngFor="let msg of error_msg" style="font-weight: bolder;">
+            {{msg}}<br />
+        </span>
+      </div>
+    </div>
+  </div>
